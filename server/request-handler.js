@@ -28,6 +28,8 @@ var defaultCorsHeaders = {
   'access-control-max-age': 10 // Seconds.
 };
 
+var database = {results: []};
+
 var requestHandler = function(request, response) {
   // Request and Response come from node's http module.
   //
@@ -56,12 +58,16 @@ var requestHandler = function(request, response) {
   //
   // You will need to change this if you are sending something
   // other than plain text, like JSON or HTML.
-  headers['Content-Type'] = 'JSON';
+  headers['Content-Type'] = 'text/plain';
 
   // .writeHead() writes to the request line and headers of the response,
   // which includes the status and all headers.
   if (request.method === 'POST') {
     statusCode = 201;
+    
+    //read the requset.body google this
+
+    database.results.push();
   }
 
   response.writeHead(statusCode, headers);
@@ -74,7 +80,8 @@ var requestHandler = function(request, response) {
   //
   // Calling .end "flushes" the response's internal buffer, forcing
   // node to actually send all the data over to the client.
-  response.end(JSON.stringify(response));
+  var output = response.output;
+  response.end(JSON.stringify(database));
 };
 
 
