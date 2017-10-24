@@ -11,7 +11,6 @@ var database = {results: []};
 
 var requestHandler = function(request, response) {
   var headers = defaultCorsHeaders;
-  var thingToSendBack;
   var statusCode = 200;
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
 
@@ -41,14 +40,15 @@ var requestHandler = function(request, response) {
   
   } else if (request.method === 'OPTIONS') {
     response.writeHead(statusCode, headers);
-    response.end(JSON.stringify(database));
+    response.end(JSON.stringify(defaultCorsHeaders['access-control-allow-methods']));
   
 
   } else {
-    statusCode = 405;
+
+    statusCode = 404;
 
     response.writeHead(statusCode, headers);
-    response.end("Method not allowed");
+    response.end('Method not allowed');
   }
 };
 
