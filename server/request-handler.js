@@ -24,7 +24,7 @@ var requestHandler = function(request, response) {
   // .writeHead() writes to the request line and headers of the response, which includes the status and all headers.
   if (request.method === 'POST') {
 
-    console.log(request.url)
+    console.log(request.url);
 
     database.results.push({
       // createdAt: 'enter time here',
