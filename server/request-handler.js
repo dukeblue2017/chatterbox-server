@@ -16,8 +16,7 @@ var requestHandler = function(request, response) {
 
   // Tell the client we are sending them plain text. You will need to change this if you are sending something other than plain text, like JSON or HTML.
   headers['Content-Type'] = 'text/plain';
-
-  if (request.method === 'POST') {
+  if (request.method === 'POST' && request.url === '/classes/messages') {
     statusCode = 201;
     var body = '';
 
@@ -33,7 +32,7 @@ var requestHandler = function(request, response) {
     });
 
 
-  } else if (request.method === 'GET') {
+  } else if (request.method === 'GET' && request.url === '/classes/messages') {
     response.writeHead(statusCode, headers);
     response.end(JSON.stringify(database));
 
